@@ -54,6 +54,9 @@ Config options:
 | `packages`               | `array <object>` | Package specification, see below                                                                                                               |
 
 
+The [base config](./src/base.config.js) file is used to set the above to appropriate defaults. The object resolved by the file at `OFFLINE_CONFIG_FILE` override those defaults.
+
+
 
 Config Package declaration
 --------------------------
