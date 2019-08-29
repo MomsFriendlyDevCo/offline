@@ -19,16 +19,52 @@ The syncing process is made up of the following steps. `FE` is the front end, `B
 6. [SW] Request each resource as a list, if the resource is a collection try to optimize this by fetching the collection IDs + version only then compare, if the resource is a URL just pull it
 
 
-Package declaration
--------------------
+Config
+------
+As Service Workers are self contained JS files injecting the offline configuration is somewhat complex.
+
+The easiest method is simply to use the supplied `gulp build` process while specifying a source file from where the config can be retrieved.
+
+```
+OFFLINE_CONFIG_FILE=./my-config.js
+gulp build
+```
+
+In the above `./my-config.js` is expected to export a JavaScript object which will be stringified and used as the offline config.
+
+
+Config options:
+
+| Property                 | Type             | Description                                                                                                                                    |
+|--------------------------|------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| `enabled`                | `boolean`        | Whether the service worker is enabled                                                                                                          |
+| `cleanInterval`          | `number`         | Time in milliseconds between cleans                                                                                                            |
+| `debug`                  | `boolean`        | Whether the service worker should output debugging messages                                                                                    |
+| `debugFailures`          | `boolean`        | Whether all failures should be cached in caches/failures                                                                                       |
+| `debugPrefix`            | `string`         | The prefix to use when debugging                                                                                                               |
+| `fetchOptions`           | `object`         | Additional options to pass into `fetch()`                                                                                                      |
+| `fetchAttempts`          | `number`         | The number of retry attempts before failing sync on network errors                                                                             |
+| `fetchConcurrent`        | `number`         | Number of concurrent requests allowed by `Promise.allLimit()`                                                                                  |
+| `forceOffline`           | `boolean`        | If true, treat all incoming connections as offline (inherited from `caches/meta/flags/forceOffline{enabled: true}` if its present)             |
+| `autoSyncFirst`          | `number`         | Time in milliseconds until first sync (falsy to disable)                                                                                       |
+| `autoSyncPollingOnline`  | `number`         | Time in milliseconds between polls after the first sync when we are online                                                                     |
+| `autoSyncPollingOffline` | `number`         | Time in milliseconds between polls after the first sync when we are offline                                                                    |
+| `ignore`                 | `array <string>` | List of RegExps to skip caching for (these have to be strings to survive JSON encoding)                                                        |
+| `maxPostCycles`          | `number`         | Maximum number of recursive post attempts before giving up, set this to the ideal depth of A creates B creates C style loops that are possible |
+| `packages`               | `array <object>` | Package specification, see below                                                                                                               |
+
+
+
+Config Package declaration
+--------------------------
 The `offline.packages` object is composed as a collection with the following properties:
 
-| Property      | Type     | Default | Description                                                   |
-|---------------|----------|---------|---------------------------------------------------------------|
-| `id`          | `string` |         | The unique ID to identify the package                         |
-| `title`       | `string` |         | The human friendly string to refer to the package             |
-| `description` | `string` |         | A longer description of the package                           |
-| `payload`     | `array`  |         | A list of resources that should be pulled within this package |
+| Property      | Type     | Description                                                   |
+|---------------|----------|---------------------------------------------------------------|
+| `id`          | `string` | The unique ID to identify the package                         |
+| `title`       | `string` | The human friendly string to refer to the package             |
+| `description` | `string` | A longer description of the package                           |
+| `payload`     | `array`  | A list of resources that should be pulled within this package |
 
 
 Payload us an array of the following objects:
