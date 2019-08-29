@@ -14,7 +14,7 @@ import sift from "sift";
 
 
 // Config {{{
-var config = {/* @exec getConfig() */};
+var config = {/*@ OFFLINE_CONFIG @*/};
 
 // Various config neatening
 config.ignore = config.ignore.map(c => new RegExp(c)); // Convert ignore rules into RegExps
