@@ -1,0 +1,36 @@
+{
+  "name": "@momsfriendlydevco/offline",
+  "version": "0.0.0",
+  "description": "Offline syncing functionality via a service worker",
+  "main": "dist/offline.sw.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MomsFriendlyDevCo/offline.git"
+  },
+  "keywords": [
+    "offline",
+    "serviceworker",
+    "sw"
+  ],
+  "author": "Matt Carter <m@ttcarter.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MomsFriendlyDevCo/offline/issues"
+  },
+  "homepage": "https://github.com/MomsFriendlyDevCo/offline#readme",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@momsfriendlydevco/gulpy": "^1.2.6",
+    "gulp": "^4.0.2",
+    "rollup": "^1.20.3",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-babel-minify": "^9.0.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "sift": "^8.5.0"
+  }
+}
