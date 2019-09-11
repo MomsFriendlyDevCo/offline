@@ -1,6 +1,6 @@
 {
   "name": "@momsfriendlydevco/offline",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Offline syncing functionality via a service worker",
   "main": "dist/offline.sw.js",
   "scripts": {
@@ -21,7 +21,7 @@
     "url": "https://github.com/MomsFriendlyDevCo/offline/issues"
   },
   "homepage": "https://github.com/MomsFriendlyDevCo/offline#readme",
-  "devDependencies": {
+  "dependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@momsfriendlydevco/gulpy": "^1.2.6",

@@ -948,7 +948,6 @@ self.installAutoSync = ()=> {
 // }}}
 
 // clean() - Remove orphaned indexes + documents [CONDITIONAL INCLUDE] {{{
-/* @if compile.clean */
 /**
 * Clean up orphaned entities, abandoned collections etc.
 * @param {boolean} [force=false] Whether to use the idle method (only clean every config.cleanInterval) or force a clean
@@ -1028,7 +1027,6 @@ self.clean = (force = false) => {
 		.then(()=> self.keyVal.set('meta', 'lastClean', {date: (new Date).toISOString()}))
 		.then(()=> session.stats)
 };
-/* @endif */
 // }}}
 
 // stats() - Recompute stats about the cache {{{
